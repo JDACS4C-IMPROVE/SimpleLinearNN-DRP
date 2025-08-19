@@ -86,7 +86,7 @@ def run(params):
 def main(args):
     cfg = DRPInferConfig()
     params = cfg.initialize_parameters(pathToModelDir=filepath,
-                                       default_config="pytorch_params.ini",
+                                       default_config="simplelinearnn_params.ini",
                                        additional_definitions=infer_params)
     timer_train = frm.Timer()    
     status = run(params)

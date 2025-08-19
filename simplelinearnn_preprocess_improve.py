@@ -102,7 +102,7 @@ def run(params):
 def main(args):
     cfg = DRPPreprocessConfig()
     params = cfg.initialize_parameters(pathToModelDir=filepath,
-                                       default_config="pytorch_params.ini",
+                                       default_config="simplelinearnn_params.ini",
                                        additional_definitions=preprocess_params)
     timer_preprocess = frm.Timer()
     ml_data_outdir = run(params)

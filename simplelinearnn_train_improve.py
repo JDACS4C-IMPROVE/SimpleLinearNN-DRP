@@ -142,7 +142,7 @@ def run(params):
 def main(args):
     cfg = DRPTrainConfig()
     params = cfg.initialize_parameters(pathToModelDir=filepath,
-                                       default_config="pytorch_params.ini",
+                                       default_config="simplelinearnn_params.ini",
                                        additional_definitions=train_params)
     timer_train = frm.Timer()    
     val_scores = run(params)
