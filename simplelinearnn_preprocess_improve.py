@@ -14,6 +14,7 @@ from model_params_def import preprocess_params
 from torch_utils import DRPDataset
 import torch
 import numpy as np
+import pickle
 
 filepath = Path(__file__).resolve().parent
 
@@ -90,7 +91,7 @@ def run(params):
         labels = data[params['y_col_name']]
         data_fname = frm.build_ml_data_file_name(data_format=params["data_format"], stage=stage)
         dataset_stage = DRPDataset(xdf.values.astype(np.float32), labels.values.astype(np.float32))
-        torch.save(dataset_stage, Path(params["output_dir"]) / data_fname)
+        torch.save(dataset_stage, Path(params["output_dir"]) / data_fname, pickle_protocol=pickle.HIGHEST_PROTOCOL)
         # [Req] Save y dataframe for the current stage
         ydf = data[y_df_cols]
         frm.save_stage_ydf(ydf, stage, params["output_dir"])
