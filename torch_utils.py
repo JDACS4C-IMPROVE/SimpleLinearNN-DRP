@@ -13,7 +13,7 @@ def determine_input_dim(dataloader):
 class LinearRegressionModel(nn.Module):
     def __init__(self, input_dim, dropout_prob):
         super().__init__()
-        self.relu = nn.ReLU()
+        self.relu = nn.LeakyReLU()
         self.dropout = nn.Dropout(p=dropout_prob)
         self.linear1 = nn.Linear(input_dim, np.floor(input_dim/2).astype(int))
         self.linear2 = nn.Linear(np.floor(input_dim/2).astype(int), np.floor(input_dim/4).astype(int))
