@@ -63,9 +63,7 @@ def run(params):
             # Convert numpy arrays to torch tensors
             #batch_data = torch.tensor(batch_data, dtype=torch.float32)
             #batch_labels = torch.tensor(batch_labels, dtype=torch.long)
-            if epoch == 1:
-                print("isnan check:", torch.isnan(batch_data).any())
-                print("isinf check:", torch.isinf(batch_data).any())
+
             # Forward pass
             #print("Epoch:", epoch)
             #print("batch_data:", batch_data)
@@ -75,7 +73,6 @@ def run(params):
             outputs = model(batch_data)
             #print("outputs:", outputs)
             loss = criterion(outputs, batch_labels)
-            print(f"Epoch {epoch}, train loss {loss}")
 
             # Backward and optimize
             optimizer.zero_grad() # Clear gradients
