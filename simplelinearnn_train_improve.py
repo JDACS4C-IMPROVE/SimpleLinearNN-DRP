@@ -109,8 +109,8 @@ def run(params):
 
     # Compute predictions
     val_true, val_pred = predicting(best_model, val_loader, device)
-    print("val_pred:", val_pred)
-    print("val_true:", val_true)
+    #print("val_pred:", val_pred)
+    #print("val_true:", val_true)
     #val_pred = val_pred.numpy().flatten()
    
      # ------------------------------------------------------
