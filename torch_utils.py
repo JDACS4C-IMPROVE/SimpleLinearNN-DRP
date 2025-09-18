@@ -60,9 +60,9 @@ class LinearRegressionModelSmall(nn.Module):
         super().__init__()
         self.relu = nn.LeakyReLU()
         self.dropout = nn.Dropout(p=dropout_prob)
-        self.linear1 = nn.Linear(input_dim, 100)
-        self.linear2 = nn.Linear(50, 10)
-        self.linear3 = nn.Linear(10, 1)
+        self.linear1 = nn.Linear(input_dim, 128)
+        self.linear2 = nn.Linear(64, 8)
+        self.linear3 = nn.Linear(8, 1)
 
     def forward(self, x):
         x = self.linear1(x)
