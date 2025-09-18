@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import torch
 import torch.nn as nn
-from torch_utils import LinearRegressionModel, DRPDataset, predicting, determine_input_dim
+from torch_utils import LinearRegressionModel, LinearRegressionModelLarge, LinearRegressionModelSmall, DRPDataset, predicting, determine_input_dim
 from torch.utils.data import DataLoader
 
 # [Req] IMPROVE imports
@@ -50,7 +50,12 @@ def run(params):
 
     input_dim = determine_input_dim(train_loader)
     print("input_dim", input_dim)
-    model = LinearRegressionModel(input_dim=input_dim, dropout_prob=0.01).to(device)
+    if params['model'] == 'default':
+        model = LinearRegressionModel(input_dim=input_dim, dropout_prob=0.01).to(device)
+    elif params['model'] == 'large':
+        model = LinearRegressionModelLarge(input_dim=input_dim, dropout_prob=0.01).to(device)
+    elif params['model'] == 'small':
+        model = LinearRegressionModelSmall(input_dim=input_dim, dropout_prob=0.01).to(device)
     criterion = nn.MSELoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=params['learning_rate'])
 

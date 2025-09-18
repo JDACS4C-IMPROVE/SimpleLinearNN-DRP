@@ -27,6 +27,51 @@ class LinearRegressionModel(nn.Module):
         x = self.relu(x)
         x = self.linear3(x)
         return x
+    
+class LinearRegressionModelLarge(nn.Module):
+    def __init__(self, input_dim, dropout_prob):
+        super().__init__()
+        self.relu = nn.LeakyReLU()
+        self.dropout = nn.Dropout(p=dropout_prob)
+        self.linear1 = nn.Linear(input_dim, np.floor(input_dim/1.5).astype(int))
+        self.linear2 = nn.Linear(np.floor(input_dim/1.5).astype(int), np.floor(input_dim/2).astype(int))
+        self.linear3 = nn.Linear(np.floor(input_dim/2).astype(int), np.floor(input_dim/3).astype(int))
+        self.linear4 = nn.Linear(np.floor(input_dim/3).astype(int), np.floor(input_dim/4).astype(int))
+        self.linear5 = nn.Linear(np.floor(input_dim/4).astype(int), np.floor(input_dim/8).astype(int))
+        self.linear6 = nn.Linear(np.floor(input_dim/8).astype(int), 1)
+
+    def forward(self, x):
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+        x = self.linear2(x)
+        x = self.relu(x)
+        x = self.linear3(x)
+        x = self.relu(x)
+        x = self.linear4(x)
+        x = self.relu(x)
+        x = self.linear5(x)
+        x = self.relu(x)
+        x = self.linear6(x)
+        return x
+    
+class LinearRegressionModelSmall(nn.Module):
+    def __init__(self, input_dim, dropout_prob):
+        super().__init__()
+        self.relu = nn.LeakyReLU()
+        self.dropout = nn.Dropout(p=dropout_prob)
+        self.linear1 = nn.Linear(input_dim, 100)
+        self.linear2 = nn.Linear(50, 10)
+        self.linear3 = nn.Linear(10, 1)
+
+    def forward(self, x):
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.dropout(x)
+        x = self.linear2(x)
+        x = self.relu(x)
+        x = self.linear3(x)
+        return x
 
 class DRPDataset(Dataset):
     def __init__(self, data, labels):
