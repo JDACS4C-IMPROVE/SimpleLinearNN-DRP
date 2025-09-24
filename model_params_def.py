@@ -13,6 +13,11 @@ train_params = [
      "default": "default",
      "help": "Model architecture to run. One of 'default', 'small', or 'large'."
     }, 
+    {"name": "dropout",
+     "type": float,
+     "default": 0.01,
+     "help": "Dropout."
+    }, 
 ]
 
 infer_params = []
