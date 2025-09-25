@@ -72,6 +72,21 @@ class LinearRegressionModelSmall(nn.Module):
         x = self.relu(x)
         x = self.linear3(x)
         return x
+    
+class LinearRegressionModelTiny(nn.Module):
+    def __init__(self, input_dim, dropout_prob):
+        super().__init__()
+        self.relu = nn.LeakyReLU()
+        self.dropout = nn.Dropout(p=dropout_prob)
+        self.linear1 = nn.Linear(input_dim, 8)
+        self.linear2 = nn.Linear(8, 1)
+
+    def forward(self, x):
+        x = self.dropout(x)
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.linear2(x)
+        return x
 
 class DRPDataset(Dataset):
     def __init__(self, data, labels):
